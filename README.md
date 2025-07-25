@@ -7,11 +7,11 @@ A personal productivity web app that lets you quickly capture notes, set reminde
 ## 🚀 Status
 
 ### 🟢 Completed
-- Basic API endpoints
-- Basic API documentation
-- FastAPI backend
-- SQLite database
-- Basic note operations (CRUD)
+- [x] Basic API endpoints
+- [x] Basic API documentation
+- [x] FastAPI backend
+- [x] SQLite database
+- [x] Basic note operations (CRUD)
 
 ### 🟡 In Progress
 - Frontend development
