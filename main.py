@@ -1,8 +1,5 @@
-from fastapi import FastAPI
-from typing import List
+from app.main import app
 
-app = FastAPI()
-
-@app.get("/notes", response_model=List[str])
-def get_notes():
-    return ["Note 1", "Note 2"]
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
