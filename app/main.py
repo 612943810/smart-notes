@@ -41,7 +41,7 @@ def update_note(note_id: int, note: schemas.NoteCreate, db: Session = Depends(ge
     db_note = db.query(models.Note).filter(models.Note.id == note_id).first()
     if db_note is None:
         raise HTTPException(status_code=404, detail="Note not found")
-    for key, value in note.dict().items():
+    for key, value in note.model_dump().items():
         setattr(db_note, key, value)
     db.commit()
     db.refresh(db_note)

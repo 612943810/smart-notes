@@ -34,20 +34,24 @@ A personal productivity web app that lets you quickly capture notes, set reminde
 #### 🟢 Completed
 - Project setup
 - Basic routing
-
-#### 🟡 In Progress
-- Vue.js integration
 - UI implementation
-
-#### 🔴 Todo
-- Vercel deployment
-- Documentation
-  - Frontend documentation
-- Feature Implementation
   - Note creation interface
   - Note list view
   - Note editing interface
   - Search and filtering
+
+#### 🟡 In Progress
+- Vercel deployment
+- Documentation
+  - Frontend documentation
+- Feature Implementation
+  - Note categorization
+  - Reminder system
+    - Set one-time reminders
+    - Set recurring reminders
+    - Snooze functionality
+    - Dismiss reminders
+- Collaboration features
   - Reminder UI
   - Categories and tags UI
 - Styling and UI Polish
@@ -75,9 +79,15 @@ A personal productivity web app that lets you quickly capture notes, set reminde
 
 ## 🛠️ Tech Stack
 
-- Vue.js
+### Frontend
+- Next.js
+- Tailwind CSS
+- TypeScript
+
+### Backend
 - FastAPI
 - SQLite
+- SQLAlchemy
 
 ### Optional and Future Features
 Coming Soon

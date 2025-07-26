@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #42b883;
+  --secondary-color: #35946a;
+  --text-color: #333;
+  --border-color: #e5e7eb;
+  --hover-color: #f3f4f6;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.5;
+  color: #333;
+}
+
+.note-list {
+  @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.note-card {
+  @apply bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-200;
+}
+
+.note-card:hover {
+  @apply transform translate-y-[-2px];
+}
+
+.note-meta {
+  @apply text-gray-500 text-sm flex items-center gap-2;
+}
+
+.create-note-btn {
+  @apply bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-colors duration-200;
+}
+
+.form-modal {
+  @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50;
+}
+
+.form-container {
+  @apply bg-white rounded-lg p-6 max-w-md w-full;
+}
+
+.form-input {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary;
+}
+
+.form-actions {
+  @apply flex justify-end gap-3;
+}
+
+.close-btn {
+  @apply text-gray-500 hover:text-gray-700;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-color: #f3f4f6;
+    --border-color: #374151;
+    --hover-color: #1f2937;
+  }
+  
+  body {
+    background-color: #111827;
+    color: #f3f4f6;
+  }
+  
+  .note-card {
+    @apply bg-gray-800 text-white;
+  }
+  
+  .note-meta {
+    @apply text-gray-400;
+  }
+  
+  .create-note-btn {
+    @apply bg-primary text-white;
+  }
+  
+  .form-container {
+    @apply bg-gray-800 text-white;
+  }
+  
+  .form-input {
+    @apply border-gray-600 bg-gray-700 text-white;
+  }
+}
