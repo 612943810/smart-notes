@@ -103,16 +103,24 @@ git https://github.com/612943810/smart-notes.git
 ```
 
 Set up the frontend:
-Comming Soon
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
 Set up the backend:
-Coming Soon
+```bash
+cd backend
+pip install -r requirements.txt
+fastapi run main.py
+```
 
 ---
 
 ## Deployment
 
-Comming Soon
+Coming Soon
 
 ---
 
