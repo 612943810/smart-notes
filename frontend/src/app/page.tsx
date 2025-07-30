@@ -41,7 +41,7 @@ export default function Home() {
       />
       {isFormVisible && (
         <NoteForm
-          note={selectedNote}
+          note={selectedNote || undefined}
           onSubmit={handleNoteSubmit}
           onClose={() => setIsFormVisible(false)}
         />
