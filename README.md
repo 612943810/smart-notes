@@ -14,6 +14,7 @@ A personal productivity web app that lets you quickly capture notes, set reminde
 - [x] FastAPI backend
 - [x] SQLite database
 - [x] Basic note operations (CRUD)
+- [x] Search functionality
 
 #### 🟡 In Progress
 - Documentation
@@ -21,7 +22,6 @@ A personal productivity web app that lets you quickly capture notes, set reminde
 
 #### 🔴 Todo
 - Note categorization
-- Search functionality
 - Reminder system
   - Set one-time reminders
   - Set recurring reminders
@@ -41,6 +41,7 @@ A personal productivity web app that lets you quickly capture notes, set reminde
   - Search and filtering
 
 #### 🟡 In Progress
+- [x] Search and filtering
 - Vercel deployment
 - Documentation
   - Frontend documentation
@@ -128,5 +129,3 @@ Coming Soon
 Coming Soon
 
 ---
-
-

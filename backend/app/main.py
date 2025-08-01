@@ -4,10 +4,23 @@ from . import models, schemas
 from .database import engine, SessionLocal
 from sqlalchemy.orm import Session
 from datetime import datetime
+from fastapi.middleware.cors import CORSMiddleware
 
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Smart Notes API", version="1.0.0")
+
+origins = [
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 def get_db():
     db = SessionLocal()
@@ -28,6 +41,14 @@ def create_note(note: schemas.NoteCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(db_note)
     return db_note
+
+@app.get("/notes/search", response_model=List[schemas.Note], tags=["notes"])
+def search_notes(q: str, db: Session = Depends(get_db)):
+    notes = db.query(models.Note).filter(
+        (models.Note.title.contains(q)) | (models.Note.content.contains(q))
+    ).all()
+    return notes
+
 
 @app.get("/notes/{note_id}", response_model=schemas.Note, tags=["notes"])
 def get_note(note_id: int, db: Session = Depends(get_db)):
