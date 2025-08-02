@@ -60,8 +60,8 @@ A personal productivity web app that lets you quickly capture notes, set reminde
   - Dark/light mode
   - Animations and transitions
   - Error handling UI
-  - [ ] Snooze functionality
-  - [ ] Dismiss reminders
+- [ ] Snooze functionality
+- [ ] Dismiss reminders
 - [ ] Organization & Search
   - [ ] Filter notes by tag
   - [ ] Filter by date
@@ -75,6 +75,7 @@ A personal productivity web app that lets you quickly capture notes, set reminde
   - [ ] Markdown support
   - [ ] Categories & Tags
   - [ ] Collaboration features
+- [x] Connected to backend API
 
 ---
 
@@ -121,7 +122,7 @@ fastapi run main.py
 
 ## Deployment
 
-Coming Soon
+Backend deployed at: https://smart-notes-6km4.onrender.com
 
 ---
 

@@ -7,9 +7,10 @@ interface NoteListProps {
   notes: Note[];
   onCreateNote: () => void;
   onEditNote: (note: Note) => void;
+  onDeleteNote: (noteId: number) => void;
 }
 
-export default function NoteList({ notes, onCreateNote, onEditNote }: NoteListProps) {
+export default function NoteList({ notes, onCreateNote, onEditNote, onDeleteNote }: NoteListProps) {
   return (
     <div className="note-list">
       <div className="flex justify-between items-center mb-6">
@@ -22,6 +23,7 @@ export default function NoteList({ notes, onCreateNote, onEditNote }: NoteListPr
             key={note.id}
             note={note}
             onEdit={() => onEditNote(note)}
+            onDelete={() => onDeleteNote(note.id)}
           />
         ))}
       </div>
