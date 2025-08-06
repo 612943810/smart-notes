@@ -13,7 +13,7 @@ export default function Home() {
 
   useEffect(() => {
       const fetchNotes = async () => {
-        const response = await fetch(process.env.NODE_ENV === 'development' ? 'http://localhost:8000/notes' : 'https://smart-notes-6km4.onrender.com/notes', {
+        const response = await fetch('http://localhost:8000/notes', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -25,21 +25,22 @@ export default function Home() {
     fetchNotes();
   }, []);
 
+  const fetchSearchedNotes = async () => {
+    const baseUrl = process.env.NEXT_PUBLIC_VERCEL_ENV === 'production' ? 'https://smart-notes-6km4.onrender.com' : 'http://localhost:8000';
+    const url = searchQuery ? `${baseUrl}/notes/search?q=${searchQuery}` : `${baseUrl}/notes`;
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    });
+    const data = await response.json();
+    setNotes(data);
+  };
+
   useEffect(() => {
     const debounceTimer = setTimeout(() => {
-      const fetchSearchedNotes = async () => {
-        const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'https://smart-notes-6km4.onrender.com';
-        const url = searchQuery ? `${baseUrl}/notes/search?q=${searchQuery}` : `${baseUrl}/notes`;
-        const response = await fetch(url, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-        const data = await response.json();
-        setNotes(data);
-      };
-      fetchSearchedNotes();
+       fetchSearchedNotes();
     }, 300);
 
     return () => clearTimeout(debounceTimer);
@@ -56,34 +57,31 @@ export default function Home() {
   };
 
   const handleNoteSubmit = async (newNote: Note) => {
+    const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'https://smart-notes-6km4.onrender.com';
+    const url = selectedNote ? `${baseUrl}/notes/${selectedNote.id}` : `${baseUrl}/notes`;
+    const method = selectedNote ? 'PUT' : 'POST';
+
+    const response = await fetch(url, {
+      method: method,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newNote),
+    });
+    const updatedNote = await response.json();
     if (selectedNote) {
-      const response = await fetch(`https://smart-notes-6km4.onrender.com/notes/${selectedNote.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newNote),
-      });
-      const updatedNote = await response.json();
       setNotes(notes.map(note =>
         note.id === selectedNote.id ? updatedNote : note
       ));
     } else {
-      const response = await fetch('https://smart-notes-6km4.onrender.com/notes', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newNote),
-      });
-      const createdNote = await response.json();
-      setNotes([...notes, createdNote]);
+      setNotes([...notes, updatedNote]);
     }
     setIsFormVisible(false);
   };
 
   const handleDeleteNote = async (noteId: number) => {
-    const response = await fetch(`https://smart-notes-6km4.onrender.com/notes/${noteId}`, {
+    const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'https://smart-notes-6km4.onrender.com';
+    const response = await fetch(`${baseUrl}/notes/${noteId}`, {
       method: 'DELETE',
     });
     if (response.ok) {
