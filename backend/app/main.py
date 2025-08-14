@@ -36,7 +36,7 @@ def get_notes(db: Session = Depends(get_db)):
 
 @app.post("/notes", response_model=schemas.Note, tags=["notes"])
 def create_note(note: schemas.NoteCreate, db: Session = Depends(get_db)):
-    db_note = models.Note(**note.dict())
+    db_note = models.Note(**note.model_dump())
     db.add(db_note)
     db.commit()
     db.refresh(db_note)
