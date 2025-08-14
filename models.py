@@ -14,3 +14,4 @@ class Note(Base):
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
     deleted_at = Column(DateTime(timezone=True, nullable=True))
     status = Column(String, nullable=True)
+    location = Column(String, nullable=True)
